@@ -1,0 +1,13 @@
+*.sw*
+.env
+.DS_Store
+
+node_modules/
+npm-debug.log
+yarn-error.log
+public/
+
+.sass-cache/
+
+public/bundle/
+public/styleguide/
