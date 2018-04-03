@@ -48,3 +48,95 @@ Plugin 'tomasiser/vim-code-dark'
 "Syntax and colors
 "--------------------------------------------------
 Plugin 'pangloss/vim-javascript'
+Plugin 'othree/html5.vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'gregsexton/matchtag'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'fleischie/vim-styled-components'
+Plugin 'isRuslan/vim-es6'
+Plugin 'tomtom/tcomment_vim'
+"Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'w0rp/ale'
+Plugin 'SirVer/ultisnips'
+
+"show tabs and trailing spaces
+set list listchars=tab:»·,trail:·
+augroup ft_go
+    au!
+
+    au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+    au Filetype go setlocal listchars+=tab:\ \ 
+augroup END
+
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
+let g:ale_linter_aliases = {'jsx': 'css'}
+
+let g:ale_fixers = {'javascript': ['prettier']}
+let g:ale_javascript_prettier_options = '--trailing-comma all --write'
+let g:ale_fix_on_save = 1
+
+
+"--------------------------------------------------
+"Text manpilation
+"--------------------------------------------------
+Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
+Plugin 'godlygeek/tabular'
+Plugin 'sbdchd/neoformat'
+
+" -------------------------------------------------
+" syntax error checking
+" -------------------------------------------------
+"Plugin 'scrooloose/syntastic'
+
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+
+" -------------------------------------------------
+"  moving around, searching and patterns
+" -------------------------------------------------
+"ctrlp search mode
+let g:ctrlp_working_path_mode = 'r'
+
+"Ignore case in search mode
+set ignorecase
+
+"Do not ignore uppercase
+set smartcase
+
+"highlight search resules
+set hlsearch
+
+"Ctrlp ignore folders
+set wildignore+=*/cache/*,*/node_modules/*,*/vendor/*,*/craft/*
+
+" -------------------------------------------------
+"  mapping
+" -------------------------------------------------
+"  NERDTree mapping
+map <C-n> :NERDTreeToggle<CR>
+colorscheme codedark
+
+map <c-t> :tabnew<CR>
+"column to display the limit row
+let &colorcolumn=join(range(81,999),",")
+" change split directions because it feels better to me that way.
+set splitbelow
+set splitright
+
+" -------------------------------------------------
+"  autocompletion
+" -------------------------------------------------
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+autocmd FileType js UltiSnipsAddFiletypes javascript-react
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
